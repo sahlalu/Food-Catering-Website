@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Satisfy&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="demo.js"></script>
+    <title>Food Cart</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+    }
+    
+
+    header, footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px;
+    }
+
+    main {
+        display: inline;
+        flex-wrap: wrap; /* Allow items to wrap to the next row */
+        justify-content: space-between; /* Add space between columns */
+        margin-top: 20px;
+        margin-left: 3%;
+        width: 100%;
+    }
+
+    .cart-item {
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 50px;
+        margin: 10px;
+        width: 38%; /* Adjust the width as needed for two columns */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .expand-button {
+        background-color: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 10px;
+        margin-right: 10px; /* Add this line to create space between button and image */
+    }
+
+    .punjabi-thali-container {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        border-radius: 5px;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .price {
+        margin-top: 17px;
+        color: #333;
+        font-weight: bold;
+        margin-right: 20%;
+    }
+
+
+    .add-to-cart {
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 20px;
+        width: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .add-to-cart:hover {
+        background-color: #555;
+    }
+
+    .sub-items {
+        margin-top: 10px;
+        margin-left: 10%;
+        display: none;
+        padding: 10px;
+    }
+
+    .sub-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 5px 0;
+    }
+
+    input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+.input {
+  max-width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+  outline: none;
+  color: dimgray;
+}
+
+.input:invalid {
+  animation: justshake 0.3s forwards;
+  color: red;
+}
+
+@keyframes justshake {
+  25% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.remove-from-cart{
+ margin-top: 20px;
+ margin-bottom: 20px;
+ font-size: 15px;
+ padding: 0.3em 1em;
+ border: transparent;
+ box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+ background: #ff5252;
+ color: white;
+ border-radius: 4px;
+}
+
+.remove-from-cart:hover {
+ background: rgb(2,0,36);
+ background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+.remove-from-cart:active {
+ transform: translate(0em, 0.2em);
+}
+        
+      
+
+        .comic-button {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 2%;
+  color: #fff;
+  background-color: #ff5252;
+  border: 2px solid #000;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px #000;
+  transition: all 0.3s ease;
+}
+
+.comic-button:hover {
+  background-color: #fff;
+  color: #ff5252;
+  border: 2px solid #ff5252;
+  box-shadow: 5px 5px 0px #ff5252;
+}
+
+.comic-button:active {
+  background-color: #fcf414;
+  box-shadow: none;
+  transform: translateY(4px);
+}
+
+
+
+
+
+
+
+    </style>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const expandButtons = document.querySelectorAll(".expand-button");
+    const cartItems = document.querySelectorAll(".cart-item");
+    const cartItemsList = document.getElementById("cart-items");
+    const cartTotal = document.getElementById("cart-total");
+    const guestCountInput = document.getElementById("guest-count");
+    const overallPrice = document.getElementById("overall-price");
+    const proceedToPayLink = document.getElementById("proceed-to-pay-link");
+    const orderIdInput = document.getElementById("orderid");
+
+    // Initialize total price variable
+    let totalPrice = 0;
+
+    expandButtons.forEach(function (expandButton, index) {
+        expandButton.addEventListener("click", function () {
+            const cartItem = cartItems[index];
+            const subItems = cartItem.querySelector(".sub-items");
+            const displayStyle = getComputedStyle(subItems).display;
+
+            if (displayStyle === "none" || displayStyle === "") {
+                // Close all other sub-items
+                cartItems.forEach(function (item, i) {
+                    if (i !== index) {
+                        item.querySelector(".sub-items").style.display = "none";
+                    }
+                });
+
+                subItems.style.display = "block";
+            } else {
+                subItems.style.display = "none";
+            }
+        });
+    });
+
+    function updateCartDisplay() {
+        cartItemsList.innerHTML = "";
+        cartTotal.textContent = `₹${totalPrice.toFixed(2)}`; // Update total price with ₹
+    }
+
+    function calculateTotalPrice() {
+        // Calculate total price from the list of items in the cart
+        let calculatedTotalPrice = 0;
+        cartItemsList.querySelectorAll("li").forEach(function (item) {
+            const itemPrice = parseFloat(item.dataset.price);
+            calculatedTotalPrice += itemPrice;
+        });
+        return calculatedTotalPrice; // Return the total price as a number
+    }
+
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
+
+    addToCartButtons.forEach(function (addToCartButton, index) {
+        addToCartButton.addEventListener("click", function () {
+            const cartItem = cartItems[index];
+            const itemName = cartItem.querySelector("h2").textContent;
+            const subItemCheckboxes = cartItem.querySelectorAll(".sub-item input[type='checkbox']");
+            const selectedSubItems = [];
+
+            subItemCheckboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    const subItemName = checkbox.parentElement.textContent.trim();
+                    const subItemPrice = parseFloat(checkbox.dataset.price);
+                    selectedSubItems.push({ name: subItemName, price: subItemPrice });
+                }
+            });
+
+            // Calculate total price for selected items
+            const totalPriceForItem = selectedSubItems.reduce((total, item) => total + item.price, 0).toFixed(2);
+
+            // Add the item to the cart
+            if (selectedSubItems.length > 0) {
+                const cartItemElement = document.createElement("li");
+                cartItemElement.dataset.price = totalPriceForItem;
+                cartItemElement.innerHTML = `
+                    <span>${itemName} - ₹${totalPriceForItem}</span> <!-- Update here to ₹ -->
+                    <ul>
+                        ${selectedSubItems.map(item => `<li>${item.name} - ₹${item.price.toFixed(2)}</li>`).join('')} <!-- Update here to ₹ -->
+                    </ul>
+                    <button class="remove-from-cart">Remove</button>
+                `;
+                cartItemsList.appendChild(cartItemElement);
+
+                // Update the total price
+                totalPrice += parseFloat(totalPriceForItem);
+                cartTotal.textContent = `₹${totalPrice.toFixed(2)}`; // Update total price with ₹
+
+                // Add click event listener to the new "Remove" button
+                const removeButton = cartItemElement.querySelector(".remove-from-cart");
+                removeButton.addEventListener("click", function () {
+                    removeFromCart(cartItemElement, parseFloat(totalPriceForItem));
+                });
+
+                alert("Item Added To Cart");
+            }
+        });
+    });
+
+    // Function to remove an item from the cart
+    function removeFromCart(cartItemElement, itemPrice) {
+        cartItemsList.removeChild(cartItemElement);
+
+        // Update the total price by subtracting the removed item's price
+        totalPrice -= itemPrice;
+        cartTotal.textContent = `₹${totalPrice.toFixed(2)}`; // Update total price with ₹
+    }
+
+    function updateOverallPrice() {
+        const guestCount = parseInt(guestCountInput.value);
+        const deliveryCharges = 200;
+        const totalWithoutDelivery = totalPrice * guestCount;
+        const overallPriceValue = totalWithoutDelivery + deliveryCharges;
+        overallPrice.textContent = `₹${overallPriceValue.toFixed(2)}`;
+    }
+
+    guestCountInput.addEventListener("input", updateOverallPrice);
+
+    function saveCartDataToLocalStorage() {
+        const cartData = {
+            orderId: orderIdInput.value,
+            guestCount: guestCountInput.value,
+            overallPrice: overallPrice.textContent,
+            cartItems: [],
+        };
+
+        // Loop through the cart items and save them
+        cartItems.forEach(function (cartItem, index) {
+            const itemData = {
+                name: cartItem.querySelector("h2").textContent,
+                price: cartItem.querySelector(".add-to-cart").getAttribute("data-price"),
+                subItems: [],
+            };
+
+            // Loop through the sub-items of each cart item and save them
+            cartItem.querySelectorAll(".sub-item").forEach(function (subItem) {
+                const checkbox = subItem.querySelector("input[type='checkbox']");
+                if (checkbox.checked) {
+                    const subItemData = {
+                        name: subItem.querySelector("label").textContent,
+                        price: checkbox.getAttribute("data-price"),
+                    };
+                    itemData.subItems.push(subItemData);
+                }
+            });
+
+            if (itemData.subItems.length > 0) {
+                cartData.cartItems.push(itemData);
+            }
+        });
+
+
+        // Store the cart data in localStorage
+        localStorage.setItem("cartData", JSON.stringify(cartData));
+    }
+
+    // Add an event listener to the "Proceed To Pay" link
+    proceedToPayLink.addEventListener("click", function () {
+        // Save the cart data to localStorage before proceeding to payment.html
+        saveCartDataToLocalStorage();
+    });
+
+    
+});
+
+function proceedToPay() {
+        const orderIdInput = document.getElementById("orderid");
+        const orderId = orderIdInput.value;
+
+        if (orderId.match(/^OID[0-9]{5}$/)) {
+            // Valid Order ID, proceed to the next page
+            window.location.href = "pay.html";
+        } else {
+            const validationMessage = document.getElementById("validation-message");
+            validationMessage.textContent = "Order ID should be in the format OID12345";
+        }
+    }
+
+
+
+    </script>
+
+</head>
+<body>
+<header>
+    <h1>Annapurana Catering Services</h1>
+</header>
+<main>
+    <section class="cart-item" style="margin-left: 8%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://img.freepik.com/premium-photo/indian-hindu-veg-thali-also-known-as-food-platter-is-complete-lunch-dinner-meal-closeup-selective-focus_466689-9096.jpg?w=1060" alt="Indian Thali">
+            <div class="details">
+                <h2>Indian Maharaja Thali</h2>
+                <p class="price">Price: ₹100 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15"> Rice</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15"> Dal Tadka</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10"> Puri</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10"> Bhindi Masala</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15"> Paneer Masala </label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10"> Aloo-Ghobhi Sabzi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="02"> Pickels</label>
+                <p class="price">Price: ₹02</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="05">Papad</label>
+                <p class="price">Price: ₹05</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="18"> Gulab-Jamun</label>
+                <p class="price">Price: ₹18</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-item" style="margin-left: 50%; margin-top: -10.7%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://media-cdn.tripadvisor.com/media/photo-s/06/8e/d0/91/maxim-s-cafe.jpg" alt="Punjabi Thali">
+            <div class="details">
+                <h2>Punjabi Thali</h2>
+                <p class="price">Price: ₹120 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Dal Makhani</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Shahi Paneer</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="25">Chole Bhature</label>
+                <p class="price">Price: ₹25</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Aloo Gobi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Jeera Rice</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Naan</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="05">Raita</label>
+                <p class="price">Price: ₹05</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Gulab Jamun</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cart-item" style="margin-top: 3.5%; margin-left: 8%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://images.squarespace-cdn.com/content/v1/5f2fa039103c7a08856032c1/1617410038432-RPNZUM15PLGK5X1PFFHB/20210321_161914.jpg" alt="Rajasthani Thali">
+            <div class="details">
+                <h2>Rajasthani Thali</h2>
+                <p class="price">Price: ₹110 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="25">Dal Batti Churma</label>
+                <p class="price">Price: ₹25</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Gatte Ki Sabzi</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Aloo Pyaz Ki Sabzi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Bajra Roti</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Badi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Churma</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Kesar Lassi</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Ker Sangri</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+        </div>
+ 
+    </section>
+
+ 
+    <section class="cart-item" style="margin-left: 50%; margin-top: -10.5%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://4.imimg.com/data4/AP/VG/ANDROID-37526939/product-500x500.jpeg" alt="Gujrati Thali">
+            <div class="details">
+                <h2>Gujrati Thali</h2>
+                <p class="price">Price: ₹125 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Gujrati Dal</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="25">Undhiyu</label>
+                <p class="price">Price: ₹25</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Khandvi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Dhokla</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Gujrati Kadhi</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Bhakri</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Fafda</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Shrikhand</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+        </div>
+
+    </section>
+    <section class="cart-item" style="margin-left: 8%; margin-top: 3.5%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://madhurasrecipe.com/wp-content/uploads/2022/03/puranpoli_thali_featured.jpg" alt="Maharashtrian Thali">
+            <div class="details">
+                <h2>Maharashtrian Thali</h2>
+                <p class="price">Price: ₹115 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Puran Poli</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Batata Vada</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Masala Bhat</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Varan Bhat</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Kothimbir Vadi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Bharli Vangi</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Matka Usal</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Solkadhi</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+        </div>
+    </section>
+    <section class="cart-item" style="margin-left: 50%; margin-top: -10.5%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://curlytales.com/wp-content/uploads/2018/11/ftr-img.jpg" alt="South Thali">
+            <div class="details">
+                <h2>South Indiian Thali</h2>
+                <p class="price">Price: ₹105 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Sambhar</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Rasam</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Coconut Chutney</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Vegetable Korma</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Poriyal</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Curd Rice</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Medu Vada</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Payasam</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+        </div>
+    </section>
+    <section class="cart-item" style="margin-left: 8%; margin-top: 3.5%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://lh3.googleusercontent.com/QbIBxDSYYUTMEC-TOZqB1qAKg-7sX-rP46p8gHWHxflE-fiIL_f-w3QQvwF0oRrp3anq67xAP_KrSJDvVTu7IsSuWR2cawZ8We9Rcbzo=w512-rw" alt="Chinese Thali">
+            <div class="details">
+                <h2>Chinese Platter & Biryani</h2>
+                <p class="price">Price: ₹120 / person</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="30">Tawa Vegetable Biryani</label>
+                <p class="price">Price: ₹30</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="25">Paneer Biryani</label>
+                <p class="price">Price: ₹25</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="25">Mashroom Biryani </label>
+                <p class="price">Price: ₹25</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Chilli Potato</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Gobhi Manchurian</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Schezwan Fried Rice</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Schezwan Noodles</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Veg Manchow Soup</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="05">Schezwan Sauce</label>
+                <p class="price">Price: ₹05</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Chilly Paneer</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Veg Manchurian Gravy</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+        </div>
+    </section>
+    <section class="cart-item" style="margin-left: 50%; margin-top: -10.5%;">
+        <div class="punjabi-thali-container">
+            <div class="expand-button">▼</div>
+            <img src="https://static.toiimg.com/photo/73046601.cms" alt="Juices Thali">
+            <div class="details">
+                <h2>Juices & Desert</h2>
+                <p class="price">Choose According</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+        <div class="sub-items">
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Orange Juice</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="30">Mango Juice</label>
+                <p class="price">Price: ₹30</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Chocolate Cake Sliices</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="10">Butter Scotch Ice-Cream</label>
+                <p class="price">Price: ₹10</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="30">Stawberry Smoothie</label>
+                <p class="price">Price: ₹30</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="20">Venella Ice-Cream</label>
+                <p class="price">Price: ₹20</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Chocolate Ice-Cream</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+            <div class="sub-item">
+                <label><input type="checkbox" data-price="15">Friut Salad</label>
+                <p class="price">Price: ₹15</p>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <div id="cart" style="margin-left: 8%; margin-top: 3%;">
+        <h2 style="font-family: 'Dancing Script', cursive; font-size: 40px; margin-bottom: 2%;">Your Cart Details</h2>
+        <form id="order-form">
+            <label for="order-id" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Order ID:</label>
+            <input placeholder="Enter Your OrderId" id="orderid" pattern="OID[0-9]{5}" class="input" name="text" required>
+            <p id="validation-message" style="color: red;"></p>
+            <ul id="cart-items" style="font-size: 17px;"></ul>
+            <p style="font-size: 20px;">Total Price: <span id="cart-total">₹0.00</span></p>
+            <label for="guest" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Total Guests:</label>
+            <input type="number" id="guest-count" name="guest" class="input" value="1">
+            <p style="font-size: 20px;">Delivery Charges: ₹200</p>
+            <p style="font-size: 20px;">Overall Price:<span id="overall-price">₹0.00</span></p>
+            <a id="proceed-to-pay-link" class="comic-button" href="javascript:void(0);" onclick="proceedToPay()">Proceed To Pay</a>
+        </form>
+    </div>
+
+
+</body>
+</html>

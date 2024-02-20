@@ -1,0 +1,98 @@
+@charset "UTF-8";
+
+body{
+     background-image: url("https://raw.githubusercontent.com/sahlalu19/project/main/20230916_184441.png");
+    background-size: contain;
+    background-position: 40%;
+    background-repeat: no-repeat;
+}
+* {
+  box-sizing: border-box;
+}
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+
+/* Create two equal columns that sits next to each other */
+.column {
+	
+    margin:100px;
+    float:left;/*Add float left*/
+   margin-top: 0%;
+
+}
+.order-details h2{
+	
+	font-family: 'Times New Roman', Times, serif;
+	font-weight: bold;
+}
+
+.order-details {
+	
+	font-size: 20px;
+
+
+}
+
+
+.add {
+
+  width: 50%;  
+}
+
+.cart{
+	font-size: 20px;
+
+}
+
+
+.Button {
+   margin-top: 5%;
+    margin-left: 60%;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.Button:hover {
+    background-color: #45a049;
+}        
+.container {
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    transform: scale(0.9);
+    animation: pop-in 0.5s forwards;
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+
+

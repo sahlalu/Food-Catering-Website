@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Satisfy&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+  
+  .navbar {
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    align-items: center;
+    top: 0%;
+    padding: 6px 20px;
+    position: fixed;
+    z-index: 2;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px;
+  }
+  
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 75px; /* Adjust the height as needed */
+    margin-right: 10px;
+  }
+  
+  .logo h1 {
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    margin-top: 10px;
+    font-family: 'Amiri', serif;
+  }
+
+  .title-box {
+    position: absolute;
+    margin-top: 80px;
+    padding-top: 0.001px;
+    padding-bottom: 0.001px;
+    padding-left: 300px;
+    padding-right: 300px;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #cc5f3d;
+    color: white;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: slideInLeft 1s forwards;
+  }
+
+  
+  @keyframes slideInLeft {
+    0% {
+      transform: translateY(-50%) translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(-50%) translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .title-box2 {
+  position: absolute;
+  margin-top: 90px;
+  padding-top: 0.001px;
+  padding-bottom: 0.001px;
+  padding-left: 220px;
+  padding-right: 220px;
+  right: 0; /* Change 'left' to 'right' */
+  transform: translateY(-50%);
+  background-color: #dbb134;
+  color: white;
+  border-top-left-radius: 40px; /* Change 'border-top-right-radius' to 'border-top-left-radius' */
+  border-bottom-left-radius: 40px; /* Change 'border-bottom-right-radius' to 'border-bottom-left-radius' */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 1s forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateY(-50%) translateX(100%); /* Change '-100%' to '100%' */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+}
+
+
+  .container {
+  width: 700px; /* You can adjust this value to control the square's size */
+  height: 300px; /* This will ensure the square aspect ratio */
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  text-align: justify;
+  margin-top: 7.5%;
+  animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+.content {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.container2 {
+  float: left;
+  width: 50%; /* Make each container take up 50% of the available width */
+  height: 300px; /* This will ensure the square aspect ratio */
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  text-align: justify;
+  margin-top: 7.5%;
+  animation: fadeIn 5s;
+}
+
+.content2 {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+  width: 90%;
+  line-height: 1.5;
+  color: #333;
+  margin-left: 105%;
+  margin-top: 2%;
+  float: left;
+
+}
+
+
+.awards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* Adjust the gap as needed */
+}
+
+.award {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: 'Sedgwick Ave Display', cursive; /* Adjust the margin as needed */
+}
+
+.award img {
+  width: 50px; /* Adjust the image size as needed */
+  height: auto;
+  margin-right: 10px;
+}
+
+.team{
+  position: relative;
+  justify-content: center;
+  font-size: 47px;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .outer-circle {
+    width: 225px;
+    height: 225px;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 2px rgba(77, 77, 77, 0.46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #fff;
+  }
+  .inner-circle {
+    width: 205px;
+    height: 205px;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 1px 2px #dddada inset;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .inner-circle img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .sq {
+    position: absolute;
+    width: 50%;
+    height: 120%;
+    max-height: 0;
+    background: rgb(242, 92, 5);
+  }
+  .outer-circle:hover .sq {
+    max-height: 130%;
+  }
+
+  .circle-3 .sq-1 {
+    top: -5%;
+    right: 0;
+    transition: max-height 0.4s linear;
+  }
+  .circle-3 .sq-2 {
+    bottom: -5%;
+    left: 0;
+    transition: max-height 0.4s linear;
+  }
+
+  
+
+  .founder {
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    margin: 50px;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 4%;
+  }
+
+  .staff{
+    margin-top: -3%;
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: serif;
+  }
+  
+  .line {
+    width: 50%;
+    height: 2px;
+    background-color: black; 
+    font-weight: bolder;
+    margin: 0 auto;/* You can change the color here */
+  }
+  
+  .bottom{
+    margin-top: 5%;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5%;
+    color: white;
+  }
+ 
+</style>
+
+<script>
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+        const url = new URL(window.location.href);
+        const targetSection = url.hash.substr(2); // Get the anchor without the #
+
+        if (targetSection) {
+            const targetElement = document.getElementById(targetSection);
+            if (targetElement) {
+                // Scroll to the target section smoothly
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+
+
+</script>
+</head>
+<body>
+ 
+
+<div class="navbar">
+  <div class="logo">
+    <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/chefvector(1).png" alt="Logo">
+    <h1>Welcome To Annapurana Caterers</h1>
+  </div>
+  <div class="nav-links">
+    <a href="masterpage.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="browse.html">Browse Plan</a>
+    <a href="masterpage.html" id="logout">LogOut</a>
+  </div>
+</div>
+
+<div class="title-box" style="margin-top: 3%;">
+    <h1>About Us</h1>
+  </div>
+  <div class="container">
+    <div class="image" style="margin-left: 130%; position: sticky; margin-top: 5%;">
+     <img src="https://5.imimg.com/data5/SH/VF/GLADMIN-10295550/birthday-party-catering-service.jpg" alt="about" style="width: 400px; height: 300px;">
+    </div>
+    <div class="content"  style="margin-top: -35%;">
+      Founded on August 23, 1998, our catering service celebrates the essence of Indian occasions and Vedic culture.
+       With 2000+ orders delivered, we've embraced tradition while empowering women and those in need through employment opportunities. Our mission is to elevate occasions through transcendent culinary experiences, 
+       driven by values of tradition, diversity, and excellence. We specialize in authentic Indian thalis, designed for weddings, corporate events, and more, uniting flavors that resonate with all. 
+       What sets us apart is our dedication to preserving culinary heritage and creating an experience that blends tradition with innovation.
+    </div>
+  </div>
+
+  <div class="title-box2" style="margin-top: 9%;">
+    <h1>Mission and Values</h1>
+  </div>
+  <div class="container2">
+    <div class="image" style="margin-left: 10%; position: sticky; margin-top: 0%;">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/019/781/572/small_2x/master-chef-illustration-design-free-vector.jpg" alt="mission" style="width: 300px; height: 300px;">
+    </div>
+    <div class="content2" style="margin-top: -32%;">
+      At Annapurna Caterers, our mission is to blend Indian culinary tradition with innovation, creating unforgettable experiences that celebrate diversity and uplift communities.
+       Our values encompass authenticity, empowerment, excellence, inclusivity, innovation, customer-centricity, sustainability, community connection, passion, and cultural respect. We're dedicated to preserving the soul of tradition while embracing modern culinary creativity.
+        Through locally sourced, organic ingredients, we minimize our footprint and maximize our positive impact.
+    </div>
+  </div>
+
+  <section id="awards">
+  <div class="title-box" style="margin-top: 35%; padding-left: 190px; padding-right: 190px; background-color: #06c606;">
+    <h1>Achievment And Awards</h1>
+  </div>
+  <div class="container2">
+    <div class="image" style="margin-left: 130%; position: sticky; margin-top: 20%;">
+      <img src="https://media.istockphoto.com/id/503481012/vector/fat-cartoon-chef.jpg?s=612x612&w=0&k=20&c=o0z8Ulj2cnK7cKAyWhz7vYyI87WeN18c43521E8ZGCg=" alt="about" style="width: 300px; height: 300px;">
+     </div>
+  <div class="content2" style="margin-left: 1%; margin-top:-60%;">
+    At Annapurna Caterers, our commitment to delivering exceptional culinary experiences has been recognized and celebrated through a series of prestigious achievements and awards. 
+    Over the years, we have strived for perfection, poured our passion into every dish, and meticulously orchestrated events that have left a lasting mark on the palates and memories of our clients.
+    Our dedication to culinary innovation, impeccable service, and unwavering attention to detail has earned us the following accolades.<br><br>
+    <div class="awards">
+      <div class="award">
+        <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/badge.png" alt="">
+        <p>Culinary Creativity Award</p>
+      </div>
+      <div class="award">
+        <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/badge.png" alt="Excellence in Event Catering">
+        <p>Excellence in Event Catering</p>
+      </div>
+      <div class="award">
+        <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/badge.png" alt="Customer's Choice Award">
+        <p>Customer's Choice Award</p>
+      </div>
+      <div class="award">
+        <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/badge.png" alt="Industry Innovation Honors">
+        <p>Industry Innovation Honors</p>
+      </div>
+      <div class="award">
+        <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/badge.png" alt="Gourmet Magazine's Choice">
+        <p>Gourmet Magazine's Choice</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  </section>
+
+  <section id="call">
+  <div class="title-box2" style="margin-top: 2%; padding-right: 200px; padding-left: 200px; background-color: #06c6c3;">
+    <h1>Social Media & Contacts</h1>
+  </div>
+  <div class="container" style="margin-top: 80%; margin-left: 51%;">
+    <div class="image" style="margin-left: -40%; position: absolute; margin-top: 10%;">
+      <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/location.png" alt="mission" style="width: 300px; height: 300px;">
+    </div>
+    <div class="content" style="margin-top: 8%;">
+      <div class="icon-container">
+        <span class="material-symbols-outlined">
+          apartment
+          </span>
+        <span>
+          Office Address:
+        </span>
+        <span class="email-id" style="margin-top: 100px;">
+          Annapurna Catering Services, Haji Malang Road,<br>
+           Kalyan East. 421306
+        </span>
+      </div>
+      <div class="icon-container">
+        <span class="material-symbols-outlined">
+          mail
+        </span>
+        <span>
+          Email Id:
+        </span>
+        <span class="email-id" style="margin-top: 100px;">
+          annapurna@caterers123@gmail.com<br>
+          contact@annapurnacaterers@gmail.com
+        </span>
+      </div>
+      <div class="icon-container">
+        <span class="material-symbols-outlined">
+          call
+          </span>
+        <span>
+          Mobile Number:
+        </span>
+        <span class="email-id" style="margin-top: 100px;">
+          9702573679 / 7710541254
+        </span>
+      </div>
+      </div>
+      
+    </div>
+ 
+
+  </section>
+<section id="team">
+  <div class="team">Our Team...</div>
+  <div class="founder" style="margin-left: 29%;">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://cdn.nickindia.com/wp-content/uploads/2018/06/character-6-1.png"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 10px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    Founder<br>
+    Kamla Devi Prasad
+  </p>
+</div>
+
+<div class="founder">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://e7.pngegg.com/pngimages/123/755/png-clipart-male-character-illustration-motu-patlu-television-show-animation-film-animation-television-child-thumbnail.png"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 10px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    Co-Founder<br>
+    Kamla Devi Prasad
+  </p>
+</div>
+
+<div class="staff">
+<div class="founder" style="margin: 60px;">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/manager.jpg"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 2px; display: inline-block; margin-left: 40px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    25+ Event Managers<br>
+  </p>
+</div>
+
+<div class="founder">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/chef(1).jpg"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 2px; display: inline-block; margin-left: 40px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    150+ Proffesional Chefs<br>
+
+  </p>
+</div>
+
+<div class="founder">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/waiter.jpg"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 2px; display: inline-block; margin-left: 30px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    500+ Trained servant-outline<br>
+    
+  </p>
+</div>
+
+<div class="founder">
+  <div class="outer-circle circle circle-3">
+    <span class="sq sq-1"></span>
+    <span class="inner-circle circle">
+      <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/kitchen-staff.jpg"/>
+    </span>
+    <span class="sq sq-2"></span>
+  </div>
+  <p style="text-align: center; margin-top: 2px; display: inline-block; margin-left: 55px; font-family: 'Roboto Slab', serif; font-weight: bold;">
+    200+ Kitchen Staffs<br>
+  </p>
+</div>
+</div>
+</section>
+
+<div class="line"></div>
+
+<div class="bottom">
+  <p style="font-size: 25px;">" रुचिरस्य संग्रहणी, आनन्दम भोजनम्| "</p>
+  Gathering Delightful Flavors, Serving Joyful Meals
+</div>
+
+<footer class="footer">
+  &copy; 2023 AnnapurnaCaterers. All rights reserved.
+</footer>
+
+</body>
+</html>

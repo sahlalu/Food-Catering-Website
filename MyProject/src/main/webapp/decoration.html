@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+
+    <title>Decoration</title>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+
+body {
+  background-color: #eef5ff;
+}
+header{
+            background-color: #333;
+            color: white;
+            top: 0%;
+            text-align: center;
+            padding: 10px;
+        }
+.wrapper {
+ 
+  width: 100%;
+  margin-top: 40%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+ 
+  left: 50%;
+  display: grid;
+  place-items: center;
+  gap: 15px;
+}
+.container {
+  height: 200px;
+  width: 200px;
+  background-color: #ffffff;
+  box-shadow: 0 0 25px rgba(17, 1, 68, 0.08);
+  border-radius: 8px;
+  position: relative;
+  text-align: center; /* Center align text */
+  padding-bottom: 20px;
+  cursor: pointer;
+}
+input[type="checkbox"] {
+    appearance: none; /* Standard property */
+    -vendorPrefix-appearance: none; 
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+}
+input[type="checkbox"]:after {
+  position: absolute;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 400;
+  content: "\f111";
+  font-size: 18px;
+  color: #478bfb;
+  right: 10px;
+  top: -5px;
+}
+input[type="checkbox"]:checked:after {
+  font-weight: 900;
+  content: "\f058";
+  color: #478bfb;
+}
+.container img {
+    width: 90%; /* Make the image fill the container */
+  max-height: 90%;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+.text {
+  margin-top: 3px; /* Space between image and text */
+  font-size: 18px; /* Adjust the font size of the text */
+  color: #333; 
+  font-weight: bold;/* Text color */
+}
+
+.price {
+  margin-top: 230px; /* Space between image and text */
+  font-size: 18px; /* Adjust the font size of the text */
+  color: #333; /* Text color */
+}
+
+textarea {
+    width: 100%;
+    margin-right: 100%;
+    padding: 10px;
+    margin-top: 100px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button {
+  background-color: #333;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-size: 17px;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  background-color: rgb(128, 95, 247);
+}
+
+.button:active {
+  transform: translateY(0.5em);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+ .input {
+  max-width: 200px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+  outline: none;
+  margin-left: 2%;
+  color: dimgray;
+}
+
+.input:invalid {
+  animation: justshake 0.3s forwards;
+  color: red;
+}
+
+
+@media screen and (min-width: 950px) {
+  .wrapper {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    
+  }
+  .container {
+    height: 300px;
+    width: 300px;
+  }
+  input[type="checkbox"]:after {
+    font-size: 22px;
+  }
+}
+    </style>
+    <script>
+		function proceedToPay() {
+        const orderIdInput = document.getElementById("orderid");
+        const orderId = orderIdInput.value;
+
+        if (orderId.match(/^OID[0-9]{5}$/)) {
+            // Valid Order ID, proceed to the next page
+            window.location.href = "menu.html";
+        } else {
+            const validationMessage = document.getElementById("validation-message");
+            validationMessage.textContent = "Order ID should be in the format OID12345";
+        }
+    }
+
+
+	</script>
+ 
+  </head>
+  <header>
+    <h1>Annapurana Catering Services</h1>
+</header>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <input type="checkbox" id="dessert-1" />
+        <label for="dessert-1">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion2.jpg" />
+          <div class="text">Wedding</div>
+          <div class="price" >For Memorable Moments With Our Culinary</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-2" />
+        <label for="dessert-2">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion1.jpg" />
+          <div class="text">Birthday Party</div>
+          <div class="price" >Celebrate With Joy</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-3" />
+        <label for="dessert-3">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion3.jpg" />
+          <div class="text">Corporate Event</div>
+          <div class="price" >Book A Professional Culinary</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-4" />
+        <label for="dessert-4">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion4.jpg" />
+          <div class="text">Festival Celebration</div>
+          <div class="price">Spice Up Your Occasion</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-5" />
+        <label for="dessert-5">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion6.jpg" />
+          <div class="text">Religious Occasion</div>
+          <div class="price" >Clebrate With Purity & Diversity </div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-6" />
+        <label for="dessert-6">
+          <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/occasion5.jpg" />
+          <div class="text">Get-Together Party</div>
+          <div class="price">Create Memory Again With Us</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-7" />
+        <label for="dessert-7">
+          <img src="https://www.mumbairesort.in/blog/wp-content/uploads/2018/06/Office_Party.jpeg" />
+          <div class="text">Office Party</div>
+          <div class="price" >Celebrate Success With Us</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-8" />
+        <label for="dessert-8">
+          <img src="https://assets.meta.is/uploads/2015/02/20120910openingceremony1.jpg" />
+          <div class="text">Opening Ceremony</div>
+          <div class="price" >Many More To Come</div>
+        </label> 
+      </div>
+      <div class="container">
+        <input type="checkbox" id="dessert-9" />
+        <label for="dessert-9">
+          <img src="https://img.freepik.com/premium-photo/friends-having-fun-falling-confetti_23-2147651884.jpg" />
+          <div class="text">Celebration Party</div>
+          <div class="price">Celebrate With Spices And Culinary</div>
+        </label> 
+      </div>
+      <form action="DecorServlet" method="post">
+		<label for="order-id" style="margin-top: 5%; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Order ID:</label>
+        <input placeholder="Enter Your OrderId" id="orderid" pattern="OID[0-9]{5}" class="input" name="orderid"  required>
+        <input type="hidden" name="text" id="selectedText" />
+        <button class="button" type="submit" style="margin-bottom: 5%; margin-top: 5%; margin-left: 30%;" onclick="prepareFormData()">Submit</button>
+    </form>
+    </div>
+   <script>
+ function prepareFormData() {
+    var selectedText = document.querySelector('.container input[type="checkbox"]:checked + label .text').innerText;
+   
+
+
+    // Assign the values to the hidden input fields
+    document.getElementById('selectedText').value = selectedText;
+}
+
+function proceedToPay() {
+        const orderIdInput = document.getElementById("orderid");
+        const orderId = orderIdInput.value;
+
+        if (orderId.match(/^OID[0-9]{5}$/)) {
+            // Valid Order ID, proceed to the next page
+            window.location.href = "menu.html";
+        } else {
+            const validationMessage = document.getElementById("validation-message");
+            validationMessage.textContent = "Order ID should be in the format OID12345";
+        }
+    }
+
+   </script>
+
+  </body>
+</html>

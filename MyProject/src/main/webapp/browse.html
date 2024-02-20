@@ -1,0 +1,685 @@
+<htmL>
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@1,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Satisfy&display=swap" rel="stylesheet">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+    
+    
+    .navbar {
+        background-color: black;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        width: 98%;
+        align-items: center;
+        top: 0%;
+        padding: 6px 20px;
+        position: fixed;
+        z-index: 2;
+    }
+    
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        padding: 10px;
+    }
+    
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo img {
+        height: 75px; 
+        margin-right: 10px;
+    }
+    
+    .logo h1 {
+        margin: 0;
+        color: white;
+        font-size: 30px;
+        margin-top: 10px;
+        font-family: 'Amiri', serif;
+    }
+
+    /* Style the heading container */
+.heading {
+    margin-top: 5%;
+    padding: 40px;
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    color: #333; /* Text color */
+
+}
+
+/* Style the heading text */
+.heading p {
+ 
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+/* Style the content within the container */
+.content {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* Add spacing and a border to the steps */
+.content > p {
+    margin-bottom: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.line {
+    width: 50%;
+    height: 2px;
+    background-color: black; 
+    font-weight: bolder;
+    margin: 0 auto;
+  }
+
+ 
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Add styles for the circle button */
+.circle-button:hover .sq {
+    max-height: 130%;
+}
+
+
+.circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+.outer-circle {
+    width: 225px;
+    height: 225px;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 2px rgba(77, 77, 77, 0.46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #fff;
+}
+
+
+.inner-circle {
+    width: 205px;
+    height: 205px;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 1px 2px #dddada inset;
+    z-index: 1;
+    overflow: hidden;
+}
+
+
+.inner-circle img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
+.sq {
+    position: absolute;
+    width: 50%;
+    height: 120%;
+    max-height: 0;
+    background: rgb(242, 92, 5);
+}
+
+
+.circle-3 .sq-1 {
+    top: -5%;
+    right: 0;
+    transition: max-height 0.4s linear;
+}
+
+.circle-3 .sq-2 {
+    bottom: -5%;
+    left: 0;
+    transition: max-height 0.4s linear;
+}
+
+
+.founder {
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    margin: 150px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+}
+
+.button-container p{
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+.button-container c{
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+.button-container{
+    display: inline-block;
+    margin-top: 2%;
+    justify-content: center;
+    margin-left: 5%;
+   
+}
+
+.details p{
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+.bottom-content p{
+    font-family: 'Dancing Script', cursive;
+    font-size: 40px;
+    text-align: center;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 500px; /* Adjust the width as needed */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    margin-right: 20px;
+    font-size: 24px;
+}
+
+
+input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+
+}
+
+
+.btn-form {
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: #fff;
+    border: none;
+    width: fit-content;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+
+.cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 10px;
+    color: white;
+    margin-left: 45%;
+    margin-top: -2%;
+    text-shadow: 2px 2px rgb(116, 116, 116);
+    text-transform: uppercase;
+    border: solid 2px black;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 17px;
+    background-color: hsl(49deg 98% 60%);
+    border-radius: 30px;
+    position: relative;
+    overflow: hidden;
+    transition: all .5s ease;
+    }
+    
+    .cancel:active {
+    transform: scale(.9);
+    transition: all 100ms ease;
+    }
+    
+    .cancel svg {
+    transition: all .5s ease;
+    z-index: 2;
+    }
+    
+    .play {
+    transition: all .5s ease;
+    transition-delay: 300ms;
+    }
+    
+    .cancel:hover svg {
+    transform: scale(3) translate(50%);
+    }
+    
+    .now {
+    position: absolute;
+    left: 0;
+    transform: translateX(-100%);
+    transition: all .5s ease;
+    z-index: 2;
+    }
+    
+    .cancel:hover .now {
+    transform: translateX(10px);
+    transition-delay: 300ms;
+    }
+    
+    .cancel:hover .play {
+    transform: translateX(200%);
+    transition-delay: 300ms;
+    }
+
+    .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5%;
+    color: white;
+  }
+
+  .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.popup-container {
+    position: absolute;
+    width: 51%;
+    height: fit-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #b2cad2;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 80%; 
+    justify-content: center;
+    overflow-y: auto; 
+}
+
+form {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Form Styles */
+label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea {
+    display: inline-block;
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+select {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+    /* Buttons */
+button[type="submit"],
+button[type="reset"] {
+    margin-top: 0%;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+button[type="reset"] {
+    background-color: #f44336;
+}
+
+
+
+
+
+
+
+    </style>
+    <script>
+function openForm(formId) {
+    document.getElementById(formId).style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("openFormBtn").addEventListener("click", function() {
+        openForm("popupOverlay"); // Corrected the ID here
+    });
+});
+
+
+function openForm(formId) {
+    document.getElementById(formId).style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("FormBtn").addEventListener("click", function() {
+        openForm("popup"); // Corrected the ID here
+    });
+});
+
+function closeForm() {
+    document.getElementById("popup").style.display = "none";
+     document.getElementById("popupOverlay").style.display = "none";
+    
+}
+
+    </script>
+
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="logo">
+              <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/chefvector(1).png" alt="Logo">
+              <h1>Welcome To Annapurana Caterers</h1>
+            </div>
+            <div class="nav-links">
+              <a href="masterpage.html">Home</a>
+              <a href="#menu">Menu</a>
+              <a href="basiccontent.html">About Us</a>
+              <a href="#logout" id="logout">LogOut</a>
+            </div>
+          </div>
+
+        <div class="heading">
+            <p> Steps To Order Your Food Cullinary </p>
+            <div class="content">
+                Step 1 : Click On Browse Plain & Fill The Necessary Details <br>
+                NOTE : Create a Orderid (Format : OID00000(Last 5 Digits Of Your Phone Number)) On Form To Proceed Order & Don't Forget It. <br> <br>
+                Step 2 : Click On "Choose Decoration" & Choose Your Decoration Theme And Fill the Orderid Then Click Submit.<br><br>
+                Step 3 : Click On "View Menu" ToChoose Your Favourite Thali Or Items & Click Proceed To Pay <br><br>
+                Step 4 : Choose Your Favourite Payment Option & Pay The Bill and Click Submit <br> <br>
+                Step 5 : DONE ! Now Download Your Bill Receipt.
+            </div>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="button-container">
+            <p> Explore The Menu... </p>
+            <div class="founder" style="justify-content: center;">
+                <button id="openFormBtn" class="circle-button">
+                    <div class="outer-circle circle circle-3">
+                        <span class="sq sq-1"></span>
+                        <span class="inner-circle circle">
+                            <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/browseplan.jpg" alt="Founder Image">
+                        </span>
+                        <span class="sq sq-2"></span>
+                    </div>
+                </button>
+                <p style="text-align: center; margin-top: 10px; font-family: 'Roboto Slab', serif; font-weight: bold; font-size: 20px;">
+                    Browse Plan
+                </p>
+            </div>
+            <div class="popup-overlay" id="popupOverlay">
+                <div class="popup-container">
+                    <!-- Close Button -->
+                    <button class="close-button" onclick="closeForm()">X</button>
+        
+                    <h1>Fill The Event Details</h1>
+        
+                    <form action="BrowseServlet" method="get">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+        
+                        <label for="order_id">Create OrderId:</label>
+                        <input type="text" id="order_id" name="orderid" pattern="OID[0-9]{5}" placeholder="OID(last 5 digits of your phone number)" required>
+        
+                        <label for="event_date">Event Date:</label>
+                        <input style= "cursor:pointer;width: 30%; display: flex;" type="date" id="event_date" name="eventdate" style="cursor: pointer;" required>
+        
+                        <label style="margin-left:65%; margin-top: -9.5%;" for="eventtime">Event Time:</label>
+                        <input style="width: 30%; display: inline-block; margin-left: 65%;"  type="time" id="event_time" name="eventtime" required>
+
+                        <label for="phone">Phone No.:</label>
+                        <input style="width: 30%; display: flex;" type="tel" id="phone" name="phone" required>
+        
+                        <label style="margin-left:65%; margin-top: -9.5%;" for="email">Email:</label>
+                        <input style="width: 30%; display: inline-block; margin-left: 65%;" type="email" id="email" name="email" required>
+        
+                        <label for="event_type">Event Type:</label>
+                        <select style="width: 30%; cursor: pointer; display: flex;" id="event_type" name="eventtype" required>
+                            <option value="wedding">Wedding</option>
+                            <option value=" Marriage anniversary">Marriage Anniversary</option>
+                             <option value="Religious Occasion">Religious Occasion</option>
+                            <option value="corporate">Corporate Meeting</option>
+                            <option value="birthday">Birthday Party</option>
+                            <option value="festival">Festival</option>
+                            <option value="get-together">Get Together</option>
+                            <option value="office">Office Meetings</option>
+                        </select>
+        
+                        <label style="margin-left:65%; margin-top: -9.5%;" for="guest_count">Number of Guests:</label>
+                        <input style="width: 30%; display: inline-block; margin-left: 65%;" type="number" id="guest_count" name="guestcount" required>
+        
+                        <label for="address">Delivery Address:</label>
+                        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+        
+                        <label for="comments">Additional Comments:</label>
+                        <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+        
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="popup-overlay" id="popup">
+				<div class="popup-container">
+					 <button class="close-button" onclick="closeForm()">X</button>
+					  <h1>Cancellation Form</h1>
+					     <form action="Cancel" method="get">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+        
+                        <label for="order_id">Enter Your OrderId:</label>
+                        <input type="text" id="order_id" name="orderid" pattern="OID[0-9]{5}" placeholder="Enter Your OrdeId" required>
+        
+                        <label for="event_date">Event Date:</label>
+                        <input style= "cursor:pointer;width: 30%; display: flex;" type="date" id="event_date" name="eventdate" style="cursor: pointer;" required>
+
+                        <label for="phone">Phone Number:</label>
+                        <input style="width: 30%; display: flex;" type="tel" id="phone" name="phone" required>
+        
+                        <label style="margin-left:65%; margin-top: -9.5%;" for="email">Email:</label>
+                        <input style="width: 30%; display: inline-block; margin-left: 65%;" type="email" id="email" name="email" required>
+                        
+                        <label for="address">Delivery Address:</label>
+                        <textarea id="address" name="address" rows="4" cols="50" required></textarea>
+        
+                        <label for="comments">Reason For Cancellation:</label>
+                        <textarea id="comments" name="comments" rows="4" cols="50"></textarea>
+                        
+                         <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                        </form>
+					 
+					
+				</div>
+			</div>
+        
+
+            <div class="founder" style="margin-left: 0%;">
+                <a href="decoration.html" class="circle-button">
+                    <div class="outer-circle circle circle-3">
+                        <span class="sq sq-1"></span>
+                        <span class="inner-circle circle">
+                            <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/decoration.png" alt="Founder Image">
+                        </span>
+                        <span class="sq sq-2"></span>
+                    </div>
+                </a>
+                <p style="text-align: center; margin-top: 10px; font-family: 'Roboto Slab', serif; font-weight: bold; font-size: 20px;">
+                    Decoration Theme
+                </p>
+            </div>
+
+            <div class="founder" style="margin-left: 0%;">
+                <a href="menu.html" class="circle-button">
+                    <div class="outer-circle circle circle-3">
+                        <span class="sq sq-1"></span>
+                        <span class="inner-circle circle">
+                            <img src="https://raw.githubusercontent.com/sahlalu19/project/main/images/viewmenu.jpg" alt="Founder Image">
+                        </span>
+                        <span class="sq sq-2"></span>
+                    </div>
+                </a>
+                <p style="text-align: center; margin-top: 10px; font-family: 'Roboto Slab', serif; font-weight: bold; font-size: 20px;">
+                    View Menu
+                </p>
+            </div>
+            <p style="margin-top: -4%;">Explore Flavorful Delights: Your Menu, Your Way!</p>
+        </div>
+
+        <div class="line" style="width: 40%; margin-top: 2%;"></div>
+       
+        <div class="details">
+            <p>Download Receipt...</p>
+
+            <div class="form-row">
+				<form action="knoworder" method="post">
+                <label for="food">Order Id : </label>
+                <input type="text" id="food" name="food" placeholder="OID00000">
+                <button class="btn-form" type="submit" value="know">Download</button>
+                </form>
+            </div>
+            <p style= "font-family: 'Roboto Slab', serif; font-size: 20px;"> For Cancel The Order <br><br>
+             Call Us : 7710879545 / 8539145752<br> <br> OR <br> <br>
+             Fill The Below Form <br> <br></p>
+             <button id="FormBtn" class="cancel">
+                <svg height="40px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                viewBox="0 0 512 512" xml:space="preserve">
+           <path style="fill:#D3C6A8;" d="M256,512c-36.863,0-66.746-12.458-66.746-27.826s29.883-27.826,66.746-27.826
+               s66.746,12.458,66.746,27.826S292.863,512,256,512z"/>
+           <path style="fill:#B1A78F;" d="M256,456.348v35.302h-64.289c-1.589-2.38-2.458-4.885-2.458-7.476
+               C189.254,468.806,219.137,456.348,256,456.348z"/>
+           <path style="fill:#57544C;" d="M267.125,397.609v82.911c0,6.147-4.981,11.13-11.125,11.13c-6.144,0-11.125-4.983-11.125-11.13
+               v-82.911c0-6.147,4.981-11.13,11.125-11.13C262.144,386.479,267.125,391.462,267.125,397.609z"/>
+           <path style="fill:#B74941;" d="M442.435,186.536c0,40.734-12.89,79.436-37.278,111.92c-22.27,29.663-53.435,52.362-88.296,64.436
+               c-2.926,10.328-8.405,19.681-16.063,27.345c-12.351,12.357-28.575,18.536-44.798,18.537c-16.223,0-32.445-6.178-44.794-18.534
+               c-7.662-7.667-13.139-17.02-16.066-27.346c-34.862-12.074-66.028-34.774-88.298-64.436c-24.387-32.485-37.277-71.186-37.277-111.921
+               C69.565,83.68,153.199,0,256,0S442.435,83.68,442.435,186.536z"/>
+           <path style="fill:#501919;" d="M406.18,172.522c0,82.986-67.238,150.261-150.18,150.261s-150.18-67.275-150.18-150.261
+               S173.058,22.261,256,22.261S406.18,89.535,406.18,172.522z"/>
+           <path style="fill:#88857E;" d="M283.877,250.435h-0.132c-6.107,0-11.058-4.951-11.058-11.058V105.739h22.249v133.638
+               C294.935,245.484,289.985,250.435,283.877,250.435z"/>
+           <path style="fill:#B1ACA3;" d="M339.433,94.609v100.174h-66.746V94.609H339.433z"/>
+           <path style="fill:#E5DFD7;" d="M339.433,166.957l-66.746-11.13v-33.391l66.746,11.13V166.957z"/>
+           <path style="fill:#88857E;" d="M250.438,94.609v55.652c0,12.295-9.961,22.261-22.249,22.261h-5.562v66.783
+               c0,6.147-4.981,11.13-11.125,11.13c-6.144,0-11.125-4.983-11.125-11.13v-66.783h-5.562c-12.288,0-22.249-9.966-22.249-22.261V94.609
+               h27.811h22.249H250.438z"/>
+           <path style="fill:#323030;" d="M183.691,94.609h11.125v50.087c0,3.073-2.49,5.565-5.562,5.565s-5.562-2.492-5.562-5.565V94.609
+               H183.691z M205.94,144.696c0,3.073,2.49,5.565,5.562,5.565s5.562-2.492,5.562-5.565V94.609h-11.125v50.087H205.94z M228.189,94.609
+               v50.087c0,3.073,2.49,5.565,5.562,5.565c3.072,0,5.562-2.492,5.562-5.565V94.609H228.189z"/>
+           </svg>
+           <span class="now">Order</span>
+           <span class="play">Cancel</span>
+             </button>
+
+             <p style= "font-family: 'Roboto Slab', serif; font-weight: bold; font-size: 20px;">NOTE : Cancellation Available Before 3 Days Of Event</p>
+        </div>
+
+        <div class="line" style="width: 60%; margin-top: 3%;"></div>
+
+        <div class="bottom-content">
+            <p> Taste the Tradition, Love the Experience.</p>
+        </div>
+
+        <footer class="footer">
+            &copy; 2023 AnnapurnaCaterers. All rights reserved.
+          </footer>
+
+    </body>
+</htmL>
