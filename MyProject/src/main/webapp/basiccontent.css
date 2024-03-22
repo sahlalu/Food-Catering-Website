@@ -1,0 +1,290 @@
+@charset "UTF-8";
+
+  @import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+  
+  .navbar {
+    background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    align-items: center;
+    top: 0%;
+    padding: 6px 20px;
+    position: fixed;
+    z-index: 2;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 10px;
+  }
+  
+  .navbar a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 75px; /* Adjust the height as needed */
+    margin-right: 10px;
+  }
+  
+  .logo h1 {
+    margin: 0;
+    color: white;
+    font-size: 30px;
+    margin-top: 10px;
+    font-family: 'Amiri', serif;
+  }
+
+  .title-box {
+    position: absolute;
+    margin-top: 80px;
+    padding-top: 0.001px;
+    padding-bottom: 0.001px;
+    padding-left: 300px;
+    padding-right: 300px;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #cc5f3d;
+    color: white;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: slideInLeft 1s forwards;
+  }
+
+  
+  @keyframes slideInLeft {
+    0% {
+      transform: translateY(-50%) translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(-50%) translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .title-box2 {
+  position: absolute;
+  margin-top: 90px;
+  padding-top: 0.001px;
+  padding-bottom: 0.001px;
+  padding-left: 220px;
+  padding-right: 220px;
+  right: 0; /* Change 'left' to 'right' */
+  transform: translateY(-50%);
+  background-color: #dbb134;
+  color: white;
+  border-top-left-radius: 40px; /* Change 'border-top-right-radius' to 'border-top-left-radius' */
+  border-bottom-left-radius: 40px; /* Change 'border-bottom-right-radius' to 'border-bottom-left-radius' */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 1s forwards;
+}
+
+@keyframes slideInRight {
+  0% {
+    transform: translateY(-50%) translateX(100%); /* Change '-100%' to '100%' */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 1;
+  }
+}
+
+
+  .container {
+  width: 700px; /* You can adjust this value to control the square's size */
+  height: 300px; /* This will ensure the square aspect ratio */
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  text-align: justify;
+  margin-top: 7.5%;
+  animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+.content {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.container2 {
+  float: left;
+  width: 50%; /* Make each container take up 50% of the available width */
+  height: 300px; /* This will ensure the square aspect ratio */
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  text-align: justify;
+  margin-top: 7.5%;
+  animation: fadeIn 5s;
+}
+
+.content2 {
+  font-family: 'Courgette', cursive;
+  font-size: 20px;
+  width: 90%;
+  line-height: 1.5;
+  color: #333;
+  margin-left: 105%;
+  margin-top: 2%;
+  float: left;
+
+}
+
+
+.awards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px; /* Adjust the gap as needed */
+}
+
+.award {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-family: 'Sedgwick Ave Display', cursive; /* Adjust the margin as needed */
+}
+
+.award img {
+  width: 50px; /* Adjust the image size as needed */
+  height: auto;
+  margin-right: 10px;
+}
+
+.team{
+  position: relative;
+  justify-content: center;
+  font-size: 47px;
+  font-family: 'Dancing Script', cursive;
+  text-align: center;
+  margin-top: 20%;
+}
+
+.circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .outer-circle {
+    width: 225px;
+    height: 225px;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 1px 2px rgba(77, 77, 77, 0.46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #fff;
+  }
+  .inner-circle {
+    width: 205px;
+    height: 205px;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 1px 2px #dddada inset;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .inner-circle img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  .sq {
+    position: absolute;
+    width: 50%;
+    height: 120%;
+    max-height: 0;
+    background: rgb(242, 92, 5);
+  }
+  .outer-circle:hover .sq {
+    max-height: 130%;
+  }
+
+  .circle-3 .sq-1 {
+    top: -5%;
+    right: 0;
+    transition: max-height 0.4s linear;
+  }
+  .circle-3 .sq-2 {
+    bottom: -5%;
+    left: 0;
+    transition: max-height 0.4s linear;
+  }
+
+  
+
+  .founder {
+    display: flex;
+    flex-direction: column;
+    display: inline-block;
+    margin: 50px;
+    justify-content: center;
+    align-items: center; 
+    margin-top: 4%;
+  }
+
+  .staff{
+    margin-top: -3%;
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: serif;
+  }
+  
+  .line {
+    width: 50%;
+    height: 2px;
+    background-color: black; 
+    font-weight: bolder;
+    margin: 0 auto;/* You can change the color here */
+  }
+  
+  .bottom{
+    margin-top: 5%;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+  }
+
+  .footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: black;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5%;
+    color: white;
+  }
+ 
