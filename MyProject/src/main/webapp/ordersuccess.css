@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f3f4f6;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: pop-in 0.5s forwards;
+        }
+
+        @keyframes pop-in {
+            0% {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .icon {
+            font-size: 60px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            margin-top: 5px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .a {
+            position: relative;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .a:hover {
+            background-color: #c0392b;
+        }
+
+        .rating:not(:checked) > input {
+  position: absolute;
+  appearance: none;
+}
+
+.rating:not(:checked) > label {
+  float: right;
+  cursor: pointer;
+  font-size: 30px;
+  color: #666;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★';
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #e58e09;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ff9e0b;
+}
+
+.rating > input:checked ~ label {
+  color: #ffa723;
+  position: relative;
+}
+.review {
+    margin-bottom: 20px;
+    margin-top: 0%;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+
+
+
+   
